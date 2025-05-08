@@ -35,7 +35,7 @@ if($res){
 
  if ($res){
      //echo "USER HAS BEEN CREATED SUCCESFULLY";
-     echo"<script>alert('USER HAS BEEN CREATED. GO tO lOGIN!')";
+     echo"<script>alert('USER HAS BEEN CREATED. GO tO lOGIN!')</script>";
      header('Refresh:0; url=http://localhost/schoolar/src/signin.html');
  }else{
     

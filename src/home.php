@@ -1,6 +1,6 @@
 <?php
   session_start(); 
-  if (isset())
+  if (isset($_SESSION['id']))
 ?>
 <!DOCTYPE html>
 <html lang="en">
