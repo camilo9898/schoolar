@@ -1,6 +1,8 @@
 <?php
   session_start(); 
-  if (isset($_SESSION['id']))
+  if (!isset($_SESSION['user_id'])){
+    header('Refresh:0; URL=http://localhost/schoolar/src/signin.html');
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +13,6 @@
     <link rel="icon" type="image/png" href="src/icons/graduacion.png">
 </head>
 <body>
-    <a href="signin.html">logout</a>
+    <a href="logout.php">logout</a>
 </body>
 </html>

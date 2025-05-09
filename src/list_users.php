@@ -1,4 +1,6 @@
 <?php
+include('../config/database.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,29 +17,40 @@
         <th>E-mail</th>
         <th>Status</th>
         <th>...</th>
-</tr>
-<tr>
-
-<tr>
-        <td>Firstname</td>
-        <td>Lastname</td>
-        <td>E-mail</td>
-        <td>Status</td>
-        <td>
-            <img src= "icons/edit.png" width =10>
-            <img src= "icons/basura.png" width =10>
-            <img src= "icons/buscar.png" width =10>
-        </tr>
-        <tr>
-
-    </table>
+    </tr>
         
         <?php
 
         //Here code
-        $sql = "SELECT";
+        $sql = "
+        select
+        firstname,
+        lastname,
+        email,
+        case when status = true then 'Active' else 'No Active' end as status
+from
+        users";
+        $res = pg_query($conn, $sql);
+        if(!$res){
+            echo "Query error";
+            exit;
+        }
+
+        while($row = pg_fetch_assoc($res)){
+            echo "<tr>"; 
+            echo "<td>". $row ['firstname'] ."</td>";
+            echo "<td>". $row ['lastname'] ."</td>";
+            echo "<td>". $row ['email'] ."</td>";
+            echo "<td>". $row ['status'] ."</td>";
+            echo "<td>"; 
+            echo "<a href=''><img src= 'icons/edit.png' width ='10'></a>";
+            echo "<a href=''><img src= 'icons/basura.png' width ='15'></a>";
+            echo "<a href=''><img src= 'icons/buscar.png' width ='15'></a>";
+            echo "</td>";
+            echo "</tr>";  
+        }
 
     ?>
-    <table>
+    </table>
 </body>
 </html>

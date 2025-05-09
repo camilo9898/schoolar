@@ -13,12 +13,12 @@
     $sql ="
     SELECT
          id,
-         COUNT(id) as total
+         count(id) as total
     FROM users
     WHERE 
         email = '$email' and
-        password = '$passw' and
-        status = true"
+        password = '$enc_pass' and
+        status = true
         GROUP BY
         id"
 ; 
@@ -28,11 +28,11 @@
         
             $row = pg_fetch_assoc($res);
 
-            if($row['total'] > 0){
+            if($row['total']>0){
                 //echo "Login OK";
              
                $_SESSION['user_id'] = $row['id'];
-               header('Refresh:0; URL = http://localhost/schoolar/src/home.php');
+               header('Refresh:0; URL=http://localhost/schoolar/src/home.php');
 
             }else{
 
